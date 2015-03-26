@@ -9,8 +9,8 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r}
-knitr::opts_chunk(echo = TRUE)
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 5, fig.height = 5)
 ```
 
 The `explainr` package turns R objects into easily understood plain English. For example, suppose we have a proportion test:
@@ -25,8 +25,18 @@ We could turn it into plain English with:
 explain(pt)
 ```
 
-In a knitr document, you might prefer to put `results = 'asis'`:
+In a knitr document, you might prefer to put `results = 'asis'`. For instance, in this next chunk, the output just looks like regular text:
 
 ```{r explain2, results = 'asis'}
 explain(pt)
+```
+
+### Visual theme
+
+You can change what theme you use. For instance, the `visual` theme, instead of just providing text, also displays images:
+
+```{r lmdisplay, results = 'asis'}
+m <- lm(mpg ~ wt, mtcars)
+
+explain(m, "visual")
 ```

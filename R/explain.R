@@ -7,7 +7,7 @@ explain <- function (x, ...) UseMethod("explain")
 #' @param x an object to be explained
 #' @param theme theme to use
 #'
-#'
+#' @import dplyr
 explain.default <- function(x, theme = "default", ...) {
     cl <- class(x)
     # retrieve theme
@@ -17,7 +17,16 @@ explain.default <- function(x, theme = "default", ...) {
     template <- th[[cl[1]]]
 
     # knit content
-    knitr::opts_chunk$set(echo = FALSE)
-    out <- knitr::knit(text = template$content, quiet = TRUE)
+    env <- new.env()
+    env$x <- x
+
+    starting_options <- knitr::opts_chunk$get()
+    knitr::opts_chunk$set(echo = FALSE, fig.path = "explainr-figures/",
+                               message = FALSE)
+
+    out <- knitr::knit(text = template$content, envir = env, quiet = TRUE)
+
+    # back to initial options
+    do.call(knitr::opts_chunk$set, starting_options)
     cat(out)
 }

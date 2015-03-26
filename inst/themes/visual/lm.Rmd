@@ -1,0 +1,15 @@
+---
+type: S3
+object: "lm"
+---
+
+```{r coef_plot}
+library(ggplot2)
+
+td <- tidy(x, conf.int = TRUE)
+ggplot(td, aes(estimate, term, color = term)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high)) +
+    geom_vline() +
+    ggtitle("Coefficient plot, with 95% confidence intervals")
+```
