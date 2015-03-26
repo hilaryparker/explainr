@@ -1,14 +1,16 @@
 Package: explainr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Explains R in plain English
 Version: 0.1
 Date: 2015-03-26
-Author: Your name goes here
-Maintainer: person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
+Authors@R: c(
+    person("Hilary", "Parker", email = "hilary@etsy.com", role = c("aut", "cre")),
+    person("David", "Robinson", email = "admiral.david@gmail.com", role = c("aut", "cre"))
+    )
+Maintainer: person("Hilary", "Parker", email = "hilary@etsy.com", role = c("aut", "cre"))
+Description: Explains R in plain English based on a templating system.
 License: MIT + file LICENSE
 LazyData: TRUE
-Authors: David Robinson <admiral.david@gmail.com> [aut, cre]
-URL: http://github.com/dgrtwo/PACKAGE
+URL: http://github.com/hilaryparker/explainr
 VignetteBuilder: knitr
-BugReports: http://github.com/dgrtwo/PACKAGE/issues
+BugReports: http://github.com/hilaryparker/explainr/issues
