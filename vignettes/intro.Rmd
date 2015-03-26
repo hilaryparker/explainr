@@ -22,6 +22,7 @@ pt <- prop.test(2, 10, .5)
 We could turn it into plain English with:
 
 ```{r explain1}
+library(explainr)
 explain(pt)
 ```
 
@@ -36,7 +37,7 @@ explain(pt)
 You can change what theme you use. For instance, the `visual` theme, instead of just providing text, also displays images:
 
 ```{r lmdisplay, results = 'asis'}
-m <- lm(mpg ~ wt, mtcars)
+m <- lm(mpg ~ wt + mpg, mtcars)
 
 explain(m, "visual")
 ```

@@ -10,6 +10,8 @@
 \item{x}{an object to be explained}
 
 \item{theme}{theme to use}
+
+\item{...}{extra arguments}
 }
 \description{
 explain an S3 object in plain English
