@@ -4,7 +4,7 @@
 \alias{explain.default}
 \title{explain an S3 object in plain English}
 \usage{
-\method{explain}{default}(x, theme = "default", ...)
+\method{explain}{default}(x, theme = "default", template = NULL, ...)
 }
 \arguments{
 \item{x}{an object to be explained}

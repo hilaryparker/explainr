@@ -38,14 +38,17 @@ compile_template <- function(x, template) {
 #' @param ... extra arguments
 #'
 #' @import dplyr
-explain.default <- function(x, theme = "default", ...) {
+explain.default <- function(x, theme = "default", template = NULL, ...) {
     cl <- class(x)
     # retrieve theme
     th <- explainr_themes[[theme]]
-    # retrieve template
-    # TODO: multiple classes
-    template <- th[[cl[1]]]
+    if (is.null(template)) {
+        # retrieve template
+        # TODO: multiple classes
+        template <- th[[cl[1]]]
+    }
 
     out <- compile_template(x, template)
     cat(out)
 }
+

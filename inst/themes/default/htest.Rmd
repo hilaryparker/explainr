@@ -1,6 +1,6 @@
 ---
+name: htest
 type: S3
-object: htest
 ---
 
 ```{r}

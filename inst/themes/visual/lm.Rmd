@@ -1,7 +1,13 @@
 ---
+name: lm
 type: S3
-object: "lm"
 ---
+
+```{r}
+if (it's a t-test) {
+    cat(explain(x, template = "t.test"))
+}
+```
 
 ```{r coef_plot}
 library(ggplot2)
