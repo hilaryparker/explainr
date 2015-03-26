@@ -8,6 +8,11 @@ Authors@R: c(
     person("David", "Robinson", email = "admiral.david@gmail.com", role = c("aut", "cre")),
     person("Stephanie", "Hicks", email = "stephaniechicks@gmail.com", role = c("aut", "cre"))
     )
+Imports:
+    dplyr,
+    broom,
+    stringr,
+    yaml
 Maintainer: Hilary Parker <hilary@etsy.com>
 Description: Explains R in plain English based on a templating system.
 License: MIT + file LICENSE
@@ -15,3 +20,4 @@ LazyData: TRUE
 URL: http://github.com/hilaryparker/explainr
 VignetteBuilder: knitr
 BugReports: http://github.com/hilaryparker/explainr/issues
+Suggests: knitr

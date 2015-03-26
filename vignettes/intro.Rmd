@@ -1,0 +1,32 @@
+---
+title: "Introduction to explainr"
+author: "Hilary Parker, David Robinson, and Stephanie Hicks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to explainr}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r}
+knitr::opts_chunk(echo = TRUE)
+```
+
+The `explainr` package turns R objects into easily understood plain English. For example, suppose we have a proportion test:
+
+```{r ttest}
+pt <- prop.test(2, 10, .5)
+```
+
+We could turn it into plain English with:
+
+```{r explain1}
+explain(pt)
+```
+
+In a knitr document, you might prefer to put `results = 'asis'`:
+
+```{r explain2, results = 'asis'}
+explain(pt)
+```
