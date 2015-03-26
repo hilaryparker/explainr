@@ -7,7 +7,7 @@ Authors@R: c(
     person("Hilary", "Parker", email = "hilary@etsy.com", role = c("aut", "cre")),
     person("David", "Robinson", email = "admiral.david@gmail.com", role = c("aut", "cre"))
     )
-Maintainer: person("Hilary", "Parker", email = "hilary@etsy.com", role = c("aut", "cre"))
+Maintainer: Hilary Parker <hilary@etsy.com>
 Description: Explains R in plain English based on a templating system.
 License: MIT + file LICENSE
 LazyData: TRUE
