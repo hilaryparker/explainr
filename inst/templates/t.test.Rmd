@@ -1,5 +1,0 @@
----
-type: S3
-object: t.test
----
-
