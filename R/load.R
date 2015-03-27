@@ -26,7 +26,7 @@ load_template <- function(path) {
 load_theme <- function(path) {
     templates <- list.files(path, full.names = TRUE)
     ret <- lapply(templates, load_template)
-    names(ret) <- sapply(ret, function(tm) tm$header$object)
+    names(ret) <- sapply(ret, function(tm) tm$header$name)
     ret
 }
 

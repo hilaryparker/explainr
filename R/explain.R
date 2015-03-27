@@ -8,16 +8,16 @@
 #' @return A text description of the object
 explain <- function (x, ...) UseMethod("explain")
 
+
 #' compile an object using a template
 #'
-#' @param x object
 #' @param template a template, typically loaded from \code{load_template}
+#' @param ... objects to be provided to the template
 #'
 #' @return A compiled text version of the object
-compile_template <- function(x, template) {
+compile_template <- function(template, ...) {
     # knit content in a new environment
-    env <- new.env()
-    env$x <- x
+    env <- new.env(parent = as.environment(list(...)))
 
     # set options, but be able to set them back
     starting_options <- knitr::opts_chunk$get()
@@ -48,7 +48,6 @@ explain.default <- function(x, theme = "default", template = NULL, ...) {
         template <- th[[cl[1]]]
     }
 
-    out <- compile_template(x, template)
+    out <- compile_template(template, x = x)
     cat(out)
 }
-
