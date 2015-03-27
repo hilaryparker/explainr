@@ -27,7 +27,7 @@ compile_template <- function(template, theme = "default", ...) {
     # set options, but be able to set them back
     starting_options <- knitr::opts_chunk$get()
     knitr::opts_chunk$set(echo = FALSE, fig.path = "explainr-figures/",
-                          message = FALSE)
+                          message = FALSE, results = 'asis')
 
     out <- knitr::knit(text = tem$content, envir = env, quiet = TRUE)
 

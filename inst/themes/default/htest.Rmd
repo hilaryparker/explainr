@@ -4,7 +4,7 @@ type: S3
 ---
 
 ```{r}
-if (grepl("proportions tests", x$method)) {
+if (grepl("proportions", x$method)) {
     compile_template("prop.test", x = x, theme = theme)
 } else {
     compile_template("htest.default", x = x, theme = theme)
