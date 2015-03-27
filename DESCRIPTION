@@ -6,7 +6,8 @@ Date: 2015-03-26
 Authors@R: c(
     person("Hilary", "Parker", email = "hilary@etsy.com", role = c("aut", "cre")),
     person("David", "Robinson", email = "admiral.david@gmail.com", role = c("aut")),
-    person("Stephanie", "Hicks", email = "stephaniechicks@gmail.com", role = c("aut"))
+    person("Stephanie", "Hicks", email = "stephaniechicks@gmail.com", role = c("aut")),
+    person("Roger", "Peng", email = "rdpeng@gmail.com", role = c("aut"))
     )
 Imports:
     dplyr,
