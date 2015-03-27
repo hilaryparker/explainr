@@ -12,10 +12,15 @@ explain <- function (x, ...) UseMethod("explain")
 #' compile an object using a template
 #'
 #' @param template a template, typically loaded from \code{load_template}
+#' @param theme name of the theme to use
 #' @param ... objects to be provided to the template
 #'
 #' @return A compiled text version of the object
-compile_template <- function(template, ...) {
+compile_template <- function(template, theme = "default", ...) {
+    # retrieve theme
+    th <- explainr_themes[[theme]]
+    tem <- th[[template]]
+
     # knit content in a new environment
     env <- list2env(list(...))
 
@@ -24,12 +29,13 @@ compile_template <- function(template, ...) {
     knitr::opts_chunk$set(echo = FALSE, fig.path = "explainr-figures/",
                           message = FALSE)
 
-    out <- knitr::knit(text = template$content, envir = env, quiet = TRUE)
+    out <- knitr::knit(text = tem$content, envir = env, quiet = TRUE)
 
     # back to initial options
     do.call(knitr::opts_chunk$set, starting_options)
-    out
+    explainr_output(out)
 }
+
 
 #' explain an S3 object in plain English
 #'
@@ -39,12 +45,9 @@ compile_template <- function(template, ...) {
 #'
 #' @import dplyr
 explain.default <- function(x, theme = "default", template = NULL, ...) {
-    # retrieve theme
-    th <- explainr_themes[[theme]]
     if (is.null(template)) {
         template <- class(x)[1]
     }
 
-    out <- compile_template(th[[template]], x = x)
-    cat(out)
+    compile_template(template, x = x, theme = theme)
 }

@@ -4,14 +4,9 @@ type: S3
 ---
 
 ```{r}
-library(dplyr)
-library(broom)
-
-tidyx <- tidy(x)
+if (grepl("proportions tests", x$method)) {
+    compile_template("prop.test", x = x, theme = theme)
+} else {
+    compile_template("htest.default", x = x, theme = theme)
+}
 ```
-
-This was a one-sample proportion test of the null hypothesis that the true population proportion is equal to `r x$null.value`. Using a significance cut-off of `r 1 - attr(x$conf.int, "conf")`, we do not reject the null hypothesis, and cannot conclude that the true population proportion is different than `r x$null.value`. The observed number of events is `r (strsplit(x$data.name, ",") %>% unlist() %>% strsplit(split = " ") %>% unlist())[1] %>% prettyNum(big.mark = ",")`, out of a total sample size of `r (strsplit(x$data.name, ",") %>% unlist() %>% strsplit(split = " ") %>% unlist())[4] %>% prettyNum(big.mark=",")`.
-
-The confidence interval for the true population proportionis (`r tidyx$conf.low`, `r tidyx$conf.high`). That is, 95 times out of 100, this interval will contain the true population proportion.
-
-The p-value for this test is `r x$p.value`. This, formally, is defined as the probability of observing a sample proportion that is as or more extreme than the observed sample proportion, assuming that the null hypothesis is true. In this case, this is the probability of observing a sample proportion that is greater than `r x$null.value + abs(x$estimate - x$null.value)` or less than `r x$null.value - abs(x$estimate - x$null.value)` assuming the null hypothesis (that the population proportion is `r x$null.value`) were really true. A smaller p-value can be used to reject the null hypothesis, and conclude that the data are not consistent with a true population proportion of `r x$null.value`. A common cutoff convention is a p-value of less than 0.05.

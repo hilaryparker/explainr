@@ -4,12 +4,14 @@
 \alias{compile_template}
 \title{compile an object using a template}
 \usage{
-compile_template(x, template)
+compile_template(template, theme = "default", ...)
 }
 \arguments{
-\item{x}{object}
-
 \item{template}{a template, typically loaded from \code{load_template}}
+
+\item{theme}{name of the theme to use}
+
+\item{...}{objects to be provided to the template}
 }
 \value{
 A compiled text version of the object

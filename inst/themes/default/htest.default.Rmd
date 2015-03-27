@@ -1,0 +1,6 @@
+---
+name: htest.default
+type: S3
+---
+
+This hypothesis test had a p-value of `r x$p.value`.
