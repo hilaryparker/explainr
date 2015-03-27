@@ -48,6 +48,7 @@ stmt2 <-
 ```
 
 ```{r stmt3}
+## TODO: Add logic to take out sample size numbers, in the case that you've inputted a variable rather than a raw value
 stmt3 <- 
     
     if (onesamp) {

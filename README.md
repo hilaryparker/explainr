@@ -27,9 +27,8 @@ library(explainr)
 The main function in the **explainr** package is `explain()`.  
 
 ```
-heads <- rbinom(1, size = 100, prob = .5)
-ptest <- prop.test(heads, 100)    
-explain(ptest)
+prop.test(x=500, n=1008) %>% 
+    explain()
 ```
 
 # Bug reports
@@ -40,4 +39,5 @@ Report bugs as issues on the [GitHub repository](https://github.com/hilaryparker
 * [Hilary Parker](https://github.com/hilaryparker)
 * [David Robinson](https://github.com/dgrtwo)
 * [Stephanie Hicks](https://github.com/stephaniehicks)
+* [Roger Peng](https://github.com/rdpeng)
 
