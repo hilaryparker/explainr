@@ -3,38 +3,42 @@ name: MArrayLM
 type: S3
 ---
 
-```{r}
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(biobroom)
-
-tidyx <- tidy(x)
 ```
 
 
 ```{r}
 mthd <- ifelse(x$method == "ls", "least squares", "robust regression")
-colnames(x$coefficients)
 ```
 
 
 The `limma` R/Bioconductor package can be used to find differentially expressed genes between groups of samples in an experiment using microarray or RNA-Sequencing data. The function `lmFit()` is used to fit a linear model for each of the genes including residual errors using `r mthd` for estimation. The function `eBayes()` is used to calculate the likelihood that a residual error would be seen by chance, or that a given is differentially expressed. 
 
-In this analysis, there were `r dim(x$coefficients)[1]` assessed for differential expression between `r dim(x$coefficients)[2]` groups (`r colnames(x$coefficients)`).  The top 10 genes that appear to be the mostly differentially expressed are
+In this analysis, there were <span style="color:red">`r dim(x$coefficients)[1]`</span>  genes assessed for differential expression between `r dim(x$coefficients)[2]` groups (after removing for rows with expression levels all equal to 0). The top 10 genes that appear to be the mostly differentially expressed are
 
 ```{r kable}
 knitr::kable(topTable(x))
 ```
 
-A volcano plot is a plot of the log-fold changes versus log-odds of differential expression. 
+
+A volcano plot combines the measure of statistical significance with the magnitude of change in differential expression for each gene. The plots compares the log-fold changes versus log-odds of differential expression and is useful to identify large differences.  
 
 ```{r}
-volcanoplot(x)
+limma::volcanoplot(fit, main = "Volcano plot", coef = 2, highlight = 10)
 ```
 
 The MAplot is a plot of the M-values (log-ratios) vs the A-values (average intensities). 
 
 ```{r}
-plotMA(x)
+limma::plotMA(fit, main = "MA plot", coef = 2)
 ```
 
-explain(x, "bioconductor")
+A histogram of the p-values
+
+```{r}
+hist(tidy(x)$p.value, main = "Histogram of p-values\nfor differential expression", xlab = "p-value")
+```
+
+

@@ -1,0 +1,54 @@
+---
+title: "bioconductor"
+output: html_document
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 5, fig.height = 5)
+# options(digits=3)
+```
+
+Load libraries and RNA-Seq data
+```{r, message=FALSE, warning=FALSE}
+# Load libraries
+library(Biobase)
+library(biomaRt)
+library(edgeR)
+library(limma)
+library(dplyr)
+library(explainr)
+
+# Load data
+bottomly.local <- load(url("http://bowtie-bio.sourceforge.net/recount/ExpressionSets/bottomly_eset.RData"))
+```
+
+Create the RNA-Seq count table (ExpressionSet), phenotypic information, design matrix. 
+```{r}
+eset <- exprs(bottomly.eset)
+keepMeID <- sapply(1:nrow(eset), function(x){ any(eset[x,] != 0) })
+eset <- eset[keepMeID,]
+
+pd <- phenoData(bottomly.eset)@data # sample information about the experiment 
+design <- model.matrix(~pd$strain)
+```
+
+Calculate normalization factors to scale raw library sizes
+```{r}
+dge <- DGEList(counts = eset)
+dge <- calcNormFactors(dge) 
+
+# applies voom transformation to count data
+v <- voom(dge, design = design) 
+```
+
+```{r}
+# Linear model for each gene and creates an MArrayLM object
+fit <- lmFit(v, design)
+fit <- eBayes(fit)
+```
+
+
+```{r, results = 'asis'}
+fit %>% explain(theme = "bioconductor")
+```
+
