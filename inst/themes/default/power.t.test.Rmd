@@ -1,0 +1,22 @@
+---
+name: power.t.test
+type: S3
+---
+
+```{r}
+## Convert power.htest to something usable (later use broom?)
+## z <- as.data.frame(unclass(x)) 
+z <- x
+single <- nrow(z) == 1L  ## let's assume single run for now
+onesample <- grepl("^One-sample", z$method)  ## otherwise two-sample
+if(onesample) { 
+    method <- "one-sample *t* test of a normal mean"
+} else {
+    method <- "two-sample *t* test of normal means"
+}
+```
+
+
+For a sample size of N = `r z$n`, a Type I error of `r z$sig.level`, and a standard deviation of the outcome of `r z$sd`, we have `r round(z$power * 100)`% power to estimate a `r z$delta` change in the outcome. This calculation is based on a `r method`.
+
+The

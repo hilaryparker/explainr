@@ -8,19 +8,13 @@ For help with the **explainr** R-package, there is a vignette available in the /
   
 # Installation
 
-First install the package's requirements (requires devtools):
+The package can be installed with
 
-devtools::install_github("dgrtwo/broom")
-devtools::install_github("dgrtwo/biobroom")
-
-Then the package can be installed with
-
-devtools::install_github("hilaryparker/explainr")
+    devtools::install_github("hilaryparker/explainr")
 
 After installation, the package can be loaded into R.
-```s
-library(explainr)
-```
+
+    library(explainr)
 
 # Using explainr
 
