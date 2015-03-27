@@ -23,6 +23,10 @@ compile_template <- function(template, theme = "default", ...) {
     }
     tem <- theme[[template]]
 
+    if (is.null(tem)) {
+        stop("Template for this object not found. You should write one!")
+    }
+
     # knit content in a new environment
     env <- list2env(list(...))
 
