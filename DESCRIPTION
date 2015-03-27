@@ -9,6 +9,8 @@ Authors@R: c(
     person("Stephanie", "Hicks", email = "stephaniechicks@gmail.com", role = c("aut"))
     )
 Imports:
+    dplyr,
+    broom,
     stringr,
     yaml
 Maintainer: Hilary Parker <hilary@etsy.com>
@@ -19,7 +21,5 @@ URL: http://github.com/hilaryparker/explainr
 VignetteBuilder: knitr
 BugReports: http://github.com/hilaryparker/explainr/issues
 Suggests: knitr,
-    dplyr,
-    broom,
     biobroom,
     ggplot2
