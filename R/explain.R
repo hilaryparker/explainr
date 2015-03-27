@@ -17,9 +17,11 @@ explain <- function (x, ...) UseMethod("explain")
 #'
 #' @return A compiled text version of the object
 compile_template <- function(template, theme = "default", ...) {
-    # retrieve theme
-    th <- explainr_themes[[theme]]
-    tem <- th[[template]]
+    if (is.character(theme)) {
+        # retrieve theme
+        theme <- explainr_themes[[theme]]
+    }
+    tem <- theme[[template]]
 
     # knit content in a new environment
     env <- list2env(list(...))

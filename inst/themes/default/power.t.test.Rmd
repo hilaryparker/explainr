@@ -14,9 +14,37 @@ if(onesample) {
 } else {
     method <- "two-sample *t* test of normal means"
 }
+
+txt1 <- paste0(
+    "A total of ", ceiling(z$n) + ceiling(z$n) %% 2, 
+    " subjects will be enrolled in this study. Using a ", 
+    method, " we have ", trunc(z$power * 100), 
+    "% power to detect a treatment effect at a two-sided ", z$sig.level, 
+    " significance level, if the true effect is ", 
+    z$delta, " ", 
+    ifelse(z$delta == 1, "unit", "units"), " different from zero. This is based on the assumption that the standard deviation of the response variable is ", 
+    z$sd, "."
+)
+
+txt2 <- paste0(
+    "A total of ", ceiling(z$n) + ceiling(z$n) %% 2, 
+    " subjects will be enrolled in this study. Using a ", 
+    method, " we have ", trunc(z$power * 100), 
+    "% power to detect a treatment difference at a two-sided ", z$sig.level, 
+    " significance level, if the true difference in the response between treatment groups is ", 
+    z$delta, " ", ifelse(z$delta == 1, "unit", "units"), ". This is based on the assumption that the standard deviation of the response variable is ", 
+    z$sd, "."
+)
+
+if(onesample) {
+    cat(txt1, "\n")
+} else {
+    cat(txt2, "\n")
+}
+                
 ```
 
 
-For a sample size of N = `r z$n`, a Type I error of `r z$sig.level`, and a standard deviation of the outcome of `r z$sd`, we have `r round(z$power * 100)`% power to estimate a `r z$delta` change in the outcome. This calculation is based on a `r method`.
 
-The
+
+
