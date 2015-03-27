@@ -21,4 +21,5 @@ BugReports: http://github.com/hilaryparker/explainr/issues
 Suggests: knitr,
     dplyr,
     broom,
+    biobroom,
     ggplot2
