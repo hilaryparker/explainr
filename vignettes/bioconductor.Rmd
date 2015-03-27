@@ -1,6 +1,12 @@
 ---
-title: "bioconductor"
-output: html_document
+title: "Introduction to explainr: Using Bioconductor Data"
+author: "Hilary Parker, David Robinson, and Stephanie Hicks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to explainr: Using Bioconductor Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, echo = FALSE}
@@ -8,7 +14,10 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 5, fig.height = 5)
 # options(digits=3)
 ```
 
-Load libraries and RNA-Seq data
+This is a vignette for the **explainr** R package with the Bioconductor theme. We consider the Bottomly data set available on [Recount](http://bowtie-bio.sourceforge.net/recount/eset_tips.shtml). After finding the differentially expressed genes using two R/Bioconductor packages **voom** + **limma**, the object that is created is an `MArrayLM` object. We will apply the `explain()` function to the `MArrayLM` object which will explain the methods used for finding the differentially expressed genes and provide some basic summary plots.  
+
+
+## Load libraries and RNA-Seq data
 ```{r, message=FALSE, warning=FALSE}
 # Load libraries
 library(Biobase)
@@ -41,12 +50,16 @@ dge <- calcNormFactors(dge)
 v <- voom(dge, design = design) 
 ```
 
+## Find the differentially expressed genes
+
+Create the `MArrayLM` object using the R/Bioconductor `limma` package
 ```{r}
 # Linear model for each gene and creates an MArrayLM object
 fit <- lmFit(v, design)
 fit <- eBayes(fit)
 ```
 
+## `explain()` the analysis and results
 
 ```{r, results = 'asis'}
 fit %>% explain(theme = "bioconductor")
