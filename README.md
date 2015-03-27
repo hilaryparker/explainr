@@ -27,7 +27,7 @@ library(explainr)
 The main function in the **explainr** package is `explain()`.  
 
 ```
-prop.test(x=500, n=1008) %>% 
+prop.test(x = 500, n = 1008) %>% 
     explain()
 ```
 
