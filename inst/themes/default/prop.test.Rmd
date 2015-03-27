@@ -12,11 +12,11 @@ if (length(x$estimate) == 2) onesamp <- FALSE
 ```
 
 ```{r stmt1} 
-stmt1 <- paste(
+stmt1 <- paste0(
     "This was a ", if (onesamp) "one" else "two", 
     " sample proportion test of the null hypothesis that the ",
     if (onesamp) {
-        paste0("true population proportion is equal to ", test$null.value, ".")
+        paste0("true population proportion is equal to ", x$null.value, ".")
     } else {
         "two population proportions are equal."
     }
@@ -28,7 +28,7 @@ if (x$p.value < 1 - attr(x$conf.int, "conf")) {
     if (onesamp == TRUE) {
         stmt2 <- paste0(
             "conclude that true population proportion is different than ",
-            test$null.value, ".") 
+            x$null.value, ".") 
         }
     if (onesamp == FALSE) {
         stmt2 <- paste0("conclude that two population proportions are not equal.") 
@@ -38,7 +38,7 @@ if (x$p.value < 1 - attr(x$conf.int, "conf")) {
     if (onesamp == TRUE) {
         stmt2 <- paste0(
             "cannot conclude that true population proportion is different than ",
-            test$null.value, ".") 
+            x$null.value, ".") 
         }
         
     if (onesamp == FALSE) {
@@ -51,7 +51,7 @@ if (x$p.value < 1 - attr(x$conf.int, "conf")) {
 
     if (onesamp == TRUE) {
         
-        samps <- strsplit(test$data.name, ",") %>%
+        samps <- strsplit(x$data.name, ",") %>%
             unlist() %>%
             strsplit(split = " ") %>%
             unlist()
@@ -70,7 +70,7 @@ if (x$p.value < 1 - attr(x$conf.int, "conf")) {
 
     if (onesamp == FALSE) {
         
-        samps <- strsplit(test$data.name, "\\(" ) %>%
+        samps <- strsplit(x$data.name, "\\(" ) %>%
             unlist() %>%
             strsplit(split="\\)") %>%
             unlist() %>%
@@ -94,7 +94,7 @@ if (x$p.value < 1 - attr(x$conf.int, "conf")) {
 `r cat(stmt1)` Using a significance level of `r 1 - attr(x$conf.int, "conf")`, we `r if (x$p.value < 1 - attr(x$conf.int, "conf")) cat("reject") else cat("do not reject")` the null hypothesis, and `r cat(stmt2)` `r cat(stmt3)`
 
 
-The confidence interval for the true `r if(onesamp == TRUE) cat("population proportion") else cat("difference in population proportions")` is (`r tidyx$conf.low`, `r tidyx$conf.high`). That is, 95 times out of 100, this interval will contain the true `r if(onesamp == TRUE) cat("population proportion.") else cat("difference in population proportions.")`
+The confidence interval for the true `r if (onesamp == TRUE) cat("population proportion") else cat("difference in population proportions")` is (`r tidyx$conf.low`, `r tidyx$conf.high`). That is, 95 times out of 100, this interval will contain the true `r if(onesamp == TRUE) cat("population proportion.") else cat("difference in population proportions.")`
 
     
 
