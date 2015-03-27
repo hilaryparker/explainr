@@ -17,7 +17,7 @@ explain <- function (x, ...) UseMethod("explain")
 #' @return A compiled text version of the object
 compile_template <- function(template, ...) {
     # knit content in a new environment
-    env <- new.env(parent = as.environment(list(...)))
+    env <- list2env(list(...))
 
     # set options, but be able to set them back
     starting_options <- knitr::opts_chunk$get()
@@ -39,15 +39,12 @@ compile_template <- function(template, ...) {
 #'
 #' @import dplyr
 explain.default <- function(x, theme = "default", template = NULL, ...) {
-    cl <- class(x)
     # retrieve theme
     th <- explainr_themes[[theme]]
     if (is.null(template)) {
-        # retrieve template
-        # TODO: multiple classes
-        template <- th[[cl[1]]]
+        template <- class(x)[1]
     }
 
-    out <- compile_template(template, x = x)
+    out <- compile_template(th[[template]], x = x)
     cat(out)
 }
