@@ -21,8 +21,8 @@ After installation, the package can be loaded into R.
 The main function in the **explainr** package is `explain()`.  
 
 ```
-prop.test(x = 500, n = 1008) %>% 
-    explain()
+ptest <- prop.test(x = 500, n = 1008)
+explain(ptest)
 ```
 
 # Bug reports
