@@ -1,0 +1,40 @@
+---
+name: MArrayLM
+type: S3
+---
+
+```{r}
+library(dplyr)
+library(biobroom)
+
+tidyx <- tidy(x)
+```
+
+
+```{r}
+mthd <- ifelse(x$method == "ls", "least squares", "robust regression")
+colnames(x$coefficients)
+```
+
+
+The `limma` R/Bioconductor package can be used to find differentially expressed genes between groups of samples in an experiment using microarray or RNA-Sequencing data. The function `lmFit()` is used to fit a linear model for each of the genes including residual errors using `r mthd` for estimation. The function `eBayes()` is used to calculate the likelihood that a residual error would be seen by chance, or that a given is differentially expressed. 
+
+In this analysis, there were `r dim(x$coefficients)[1]` assessed for differential expression between `r dim(x$coefficients)[2]` groups (`r colnames(x$coefficients)`).  The top 10 genes that appear to be the mostly differentially expressed are
+
+```{r kable}
+knitr::kable(topTable(x))
+```
+
+A volcano plot is a plot of the log-fold changes versus log-odds of differential expression. 
+
+```{r}
+volcanoplot(x)
+```
+
+The MAplot is a plot of the M-values (log-ratios) vs the A-values (average intensities). 
+
+```{r}
+plotMA(x)
+```
+
+explain(x, "bioconductor")
