@@ -35,3 +35,5 @@ Report bugs as issues on the [GitHub repository](https://github.com/hilaryparker
 * [Stephanie Hicks](https://github.com/stephaniehicks)
 * [Roger Peng](https://github.com/rdpeng)
 
+# Inspiration
+This project draws inspiration from the [CausalImpact package](https://github.com/google/CausalImpact).
