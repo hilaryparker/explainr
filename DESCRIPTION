@@ -13,7 +13,8 @@ Imports:
     dplyr,
     broom,
     stringr,
-    yaml
+    yaml,
+    knitr
 Maintainer: Hilary Parker <hilary@etsy.com>
 Description: Explains R objects in plain English, based on a set of templates.
 License: MIT + file LICENSE
@@ -21,6 +22,6 @@ LazyData: TRUE
 URL: http://github.com/hilaryparker/explainr
 VignetteBuilder: knitr
 BugReports: http://github.com/hilaryparker/explainr/issues
-Suggests: knitr,
+Suggests: 
     biobroom,
     ggplot2
