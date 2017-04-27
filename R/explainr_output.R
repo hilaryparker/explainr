@@ -15,5 +15,5 @@ explainr_output <- function(x) {
 #'
 #' @param x
 print.explainr_output <- function(x) {
-    cat(x, sep = "\n")
+    cat(strwrap(x), sep = "\n")
 }
